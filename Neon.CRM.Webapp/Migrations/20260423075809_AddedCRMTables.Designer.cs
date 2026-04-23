@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Neon.CRM.Webapp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260422041530_AddedCRMTables")]
+    [Migration("20260423075809_AddedCRMTables")]
     partial class AddedCRMTables
     {
         /// <inheritdoc />

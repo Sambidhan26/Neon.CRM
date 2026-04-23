@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Neon.CRM.Webapp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260422082351_SeedingVacationPackages")]
-    partial class SeedingVacationPackages
+    [Migration("20260423075842_AddedVacationSeeded")]
+    partial class AddedVacationSeeded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

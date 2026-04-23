@@ -7,7 +7,7 @@
 namespace Neon.CRM.Webapp.Migrations
 {
     /// <inheritdoc />
-    public partial class SeedingVacationPackages : Migration
+    public partial class AddedVacationSeeded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
