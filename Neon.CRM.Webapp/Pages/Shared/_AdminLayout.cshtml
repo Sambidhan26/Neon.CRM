@@ -128,65 +128,15 @@
                         <li>
                             <!-- User Profile-->
                             <!-- User Profile-->
-                        <li>
-                            <!-- User Profile-->
-                            <div class="user-profile d-flex no-block dropdown m-t-20">
-                                <div class="user-pic">
-                                    <img src="~/images/users/1.jpg" alt="users" class="rounded-circle" width="40" />
-                                </div>
-                                <div class="user-content hide-menu m-l-10">
-                                    <a href="#" class="" id="Userdd" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                       aria-expanded="false">
-                                        <h5 class="m-b-0 user-name font-medium">
-                                            Steave Jobs <i class="mdi mdi-chevron-down fs-4"></i>
-                                        </h5>
-                                        <span class="op-5 user-email">varun@gmail.com</span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="mdi mdi-account m-r-5 m-l-5"></i> My
-                                            Profile
-                                        </a>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="mdi mdi-wallet m-r-5 m-l-5"></i> My
-                                            Balance
-                                        </a>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="mdi mdi-email m-r-5 m-l-5"></i>
-                                            Inbox
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="mdi mdi-settings m-r-5 m-l-5"></i>
-                                            Account
-                                            Setting
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="mdi mdi-power m-r-5 m-l-5"></i>
-                                            Logout
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                      <partial name="_AdminLoginPartial" />
                             <!-- End User Profile-->
-                        </li>
-                            <!-- End User Profile-->
-                        </li>
+                        
 
                         <!-- User Profile-->
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-page="Index" aria-expanded="false">
                                 <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span>
                             </a>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-page="Login"
-                               aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-page="Register"
-                               aria-expanded="false"><i class="mdi mdi-account-plus"></i><span class="hide-menu">Register</span></a>
-                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-page="Privacy"
                                aria-expanded="false"><i class="mdi mdi-lock"></i><span class="hide-menu">Privacy</span></a>
@@ -273,6 +223,7 @@
     <script src="~/lib/chartist/dist/chartist.min.js"></script>
     <script src="~/lib/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="~/js/pages/dashboards/dashboard1.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

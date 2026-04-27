@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Neon.CRM.Webapp.Data.Models
+@inject SignInManager<Agent> SignInManager
+@inject UserManager<Agent> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+        <li>
+            <!-- User Profile-->
+            <div class="user-profile d-flex no-block dropdown m-t-20">
+                <div class="user-pic">
+                    <img src="~/images/users/1.jpg" alt="users" class="rounded-circle" width="40" />
+                </div>
+                <div class="user-content hide-menu m-l-10">
+                    <a href="#" class="" id="Userdd" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <h5 class="m-b-0 user-name font-medium">
+                            Hello @User.Identity?.Name! <i class="mdi mdi-chevron-down fs-4"></i>
+                        </h5>
+                       @*  <span class="op-5 user-email">varun@gmail.com</span> *@
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
+                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">
+                            <i class="mdi mdi-account m-r-5 m-l-5"></i> My
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                <button type="submit" class="nav-link btn btn-link text-dark"><i class="mdi mdi-power m-r-5 m-l-5"></i>Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End User Profile-->
+        </li>
+@*     <li class="nav-item">
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+    </li>
+    <li class="nav-item">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
+    </li> *@
+}
+else
+{
+        <li class="sidebar-item">
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="Identity" asp-page="/Account/Login
+               aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="Identity" asp-page="/Account/Register"
+               aria-expanded="false"><i class="mdi mdi-account-plus"></i><span class="hide-menu">Register</span></a>
+        </li>
+}
+</ul>

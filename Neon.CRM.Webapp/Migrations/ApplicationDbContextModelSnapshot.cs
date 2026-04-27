@@ -17,7 +17,7 @@ namespace Neon.CRM.Webapp.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.2")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -254,7 +254,7 @@ namespace Neon.CRM.Webapp.Migrations
 
                     b.HasIndex("VacationPackageId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("Neon.CRM.Webapp.Data.Models.Customer", b =>
@@ -287,7 +287,7 @@ namespace Neon.CRM.Webapp.Migrations
 
                     b.HasIndex("AgentId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("Neon.CRM.Webapp.Data.Models.VacationPackage", b =>
@@ -314,7 +314,7 @@ namespace Neon.CRM.Webapp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VacationPackages");
+                    b.ToTable("VacationPackages", (string)null);
 
                     b.HasData(
                         new
