@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Neon.CRM.Webapp.Data;
 using Neon.CRM.Webapp.Data.Models;
-using Neon.CRM.Webapp.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

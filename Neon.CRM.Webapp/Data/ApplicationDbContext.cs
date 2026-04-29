@@ -45,6 +45,39 @@ namespace Neon.CRM.Webapp.Data
                     DurationInDays = 3,
                 }
                 );
+
+            builder.Entity<Customer>().HasData(
+               new Customer
+               {
+                   Id = 1,
+                   FirstName = "Sammyboy",
+                   LastName = "Quarter",
+                   Email = "sammyboy.quarter@example.com",
+                   PhoneNumber = "123-456-7890",
+                   Address = "123 Beach Paradise Lane",
+                   AgentId = "agent1"
+               },
+               new Customer
+               {
+                   Id = 2,
+                   FirstName = " Adventure",
+                   LastName = "Experience",
+                   Email = "mountain.adventure@example.com",
+                   PhoneNumber = "987-654-3210",
+                   Address = "456 Mountain Adventure Lane",
+                   AgentId = "agent2"
+               },
+               new Customer
+               {
+                   Id = 3,
+                   FirstName = "Explorer",
+                   LastName = "Discover",
+                   Email = "city.explorer@example.com",
+                   PhoneNumber = "555-555-5555",
+                   Address = "789 City Explorer Lane",
+                    AgentId = "agent3"
+               }
+               );
         }
     }
 }
