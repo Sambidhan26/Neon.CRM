@@ -14,7 +14,7 @@
 </head>
 <body>
 <p>
-    <a class="btn btn-success" asp-page="Create">Create New</a>
+    <a class="btn btn-success" asp-page="./Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -61,10 +61,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Agent.FirstName)
             </td>
-            <td>
-                        <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                        <a class="btn btn-dan" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            <td >
+                        <div style="display: flex; gap: 4px;">
+
+                        <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.Id">Details
+                            </a>
+                        <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete
+                            </a>
+                </div>
             </td>
         </tr>
 }

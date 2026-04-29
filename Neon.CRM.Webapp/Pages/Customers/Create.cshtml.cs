@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Neon.CRM.Webapp.Data;
+using Neon.CRM.Webapp.Data.Models;
 
 namespace Neon.CRM.Webapp.Pages.Customers;
 
@@ -21,34 +22,32 @@ public class CreateModel : PageModel
 
     public IActionResult OnGet()
     {
-        if (ModelState.IsValid)
-        {
-            //var agent = _context.Customers.Select(c => c.Agent)
-            //    .Where(a => a != null)
-            //    .Select(a => new { a.Id, FullName = $"{a.FirstName} {a.LastName}" })
-            //    .ToList();
-            var agents = _context.Users
-                .Select(u => new { u.Id, FullName = $"{u.FirstName} {u.LastName}" })
+        var agents = _context.Users
+                .Select(q =>
+                    new {
+                        q.Id,
+                        q.FirstName
+                    }
+                )
                 .ToList();
-            ViewData["AgentId"] = new SelectList(agents, "Id", "Name");
-        }
-            return Page();
+        ViewData["AgentId"] = new SelectList(agents, "Id", "FirstName");
+        return Page();
     }
 
-    //[BindProperty]
-    //public Customer Customers { get; set; } = default!;
+    [BindProperty]
+    public Customer Customers { get; set; } = default!;
 
-    //// For more information, see https://aka.ms/RazorPagesCRUD.
-    //public async Task<IActionResult> OnPostAsync()
-    //{
-    //    if (!ModelState.IsValid)
-    //    {
-    //        return Page();
-    //    }
+    // For more information, see https://aka.ms/RazorPagesCRUD.
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
 
-    //    _context.Customers.Add(Customers);
-    //    await _context.SaveChangesAsync();
+        _context.Customers.Add(Customers);
+        await _context.SaveChangesAsync();
 
-    //    return RedirectToPage("./Index");
-    //}
+        return RedirectToPage("./Index");
+    }
 }

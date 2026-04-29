@@ -46,6 +46,47 @@ namespace Neon.CRM.Webapp.Data
                 }
                 );
 
+            builder.Entity<Agent>().HasData(
+    new Agent
+    {
+        Id = "agent1",
+        UserName = "agent1",
+        NormalizedUserName = "AGENT1",
+        Email = "agent1@example.com",
+        NormalizedEmail = "AGENT1@EXAMPLE.COM",
+        EmailConfirmed = false,
+        FirstName = "AgentOne",
+        LastName = "Hello1",
+        SecurityStamp = "STAMP1",  // ✅ Static string (doesn't need to be GUID format)
+        ConcurrencyStamp = "CONCUR1"  // ✅ Static string
+    },
+    new Agent
+    {
+        Id = "agent2",
+        UserName = "agent2",
+        NormalizedUserName = "AGENT2",
+        Email = "agent2@example.com",
+        NormalizedEmail = "AGENT2@EXAMPLE.COM",
+        EmailConfirmed = false,
+        FirstName = "AgentTwo",
+        LastName = "Hello2",
+        SecurityStamp = "STAMP2",
+        ConcurrencyStamp = "CONCUR2"
+    },
+    new Agent
+    {
+        Id = "agent3",
+        UserName = "agent3",
+        NormalizedUserName = "AGENT3",
+        Email = "agent3@example.com",
+        NormalizedEmail = "AGENT3@EXAMPLE.COM",
+        EmailConfirmed = false,
+        FirstName = "AgentThree",
+        LastName = "Hello3",
+        SecurityStamp = "STAMP3",
+        ConcurrencyStamp = "CONCUR3"
+    });
+
             builder.Entity<Customer>().HasData(
                new Customer
                {
@@ -75,7 +116,7 @@ namespace Neon.CRM.Webapp.Data
                    Email = "city.explorer@example.com",
                    PhoneNumber = "555-555-5555",
                    Address = "789 City Explorer Lane",
-                    AgentId = "agent3"
+                   AgentId = "agent3"
                }
                );
         }

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Neon.CRM.Webapp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260429043043__AddedCustomersSeeded")]
-    partial class _AddedCustomersSeeded
+    [Migration("20260429073730__AddedAgentSeeded")]
+    partial class _AddedAgentSeeded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -229,6 +229,59 @@ namespace Neon.CRM.Webapp.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "agent1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "CONCUR1",
+                            Email = "agent1@example.com",
+                            EmailConfirmed = false,
+                            FirstName = "AgentOne",
+                            LastName = "Hello1",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "AGENT1@EXAMPLE.COM",
+                            NormalizedUserName = "AGENT1",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "STAMP1",
+                            TwoFactorEnabled = false,
+                            UserName = "agent1"
+                        },
+                        new
+                        {
+                            Id = "agent2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "CONCUR2",
+                            Email = "agent2@example.com",
+                            EmailConfirmed = false,
+                            FirstName = "AgentTwo",
+                            LastName = "Hello2",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "AGENT2@EXAMPLE.COM",
+                            NormalizedUserName = "AGENT2",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "STAMP2",
+                            TwoFactorEnabled = false,
+                            UserName = "agent2"
+                        },
+                        new
+                        {
+                            Id = "agent3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "CONCUR3",
+                            Email = "agent3@example.com",
+                            EmailConfirmed = false,
+                            FirstName = "AgentThree",
+                            LastName = "Hello3",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "AGENT3@EXAMPLE.COM",
+                            NormalizedUserName = "AGENT3",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "STAMP3",
+                            TwoFactorEnabled = false,
+                            UserName = "agent3"
+                        });
                 });
 
             modelBuilder.Entity("Neon.CRM.Webapp.Data.Models.Booking", b =>
@@ -291,38 +344,6 @@ namespace Neon.CRM.Webapp.Migrations
                     b.HasIndex("AgentId");
 
                     b.ToTable("Customers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "123 Beach Paradise Lane",
-                            AgentId = "agent1",
-                            Email = "sammyboy.quarter@example.com",
-                            FirstName = "Sammyboy",
-                            LastName = "Quarter",
-                            PhoneNumber = "123-456-7890"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "456 Mountain Adventure Lane",
-                            AgentId = "agent2",
-                            Email = "mountain.adventure@example.com",
-                            FirstName = " Adventure",
-                            LastName = "Experience",
-                            PhoneNumber = "987-654-3210"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "789 City Explorer Lane",
-                            AgentId = "agent3",
-                            Email = "city.explorer@example.com",
-                            FirstName = "Explorer",
-                            LastName = "Discover",
-                            PhoneNumber = "555-555-5555"
-                        });
                 });
 
             modelBuilder.Entity("Neon.CRM.Webapp.Data.Models.VacationPackage", b =>

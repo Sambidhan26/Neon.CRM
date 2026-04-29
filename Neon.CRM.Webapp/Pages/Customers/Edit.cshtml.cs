@@ -9,70 +9,69 @@ using Microsoft.EntityFrameworkCore;
 using Neon.CRM.Webapp.Data;
 using Neon.CRM.Webapp.Data.Models;
 
-namespace Neon.CRM.Webapp.Pages_Customers
-{
-    public class EditModel : PageModel
-    {
-        private readonly Neon.CRM.Webapp.Data.ApplicationDbContext _context;
+namespace Neon.CRM.Webapp.Pages.Customers;
 
-        public EditModel(Neon.CRM.Webapp.Data.ApplicationDbContext context)
+public class EditModel : PageModel
+{
+    private readonly Neon.CRM.Webapp.Data.ApplicationDbContext _context;
+
+    public EditModel(Neon.CRM.Webapp.Data.ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    [BindProperty]
+    public Customer Customer { get; set; } = default!;
+
+    public async Task<IActionResult> OnGetAsync(int? id)
+    {
+        if (id == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        [BindProperty]
-        public Customer Customer { get; set; } = default!;
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        var customer =  await _context.Customers.FirstOrDefaultAsync(m => m.Id == id);
+        if (customer == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            return NotFound();
+        }
+        Customer = customer;
+       ViewData["AgentId"] = new SelectList(_context.Users, "Id", "Id");
+        return Page();
+    }
 
-            var customer =  await _context.Customers.FirstOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
-            {
-                return NotFound();
-            }
-            Customer = customer;
-           ViewData["AgentId"] = new SelectList(_context.Users, "Id", "Id");
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more information, see https://aka.ms/RazorPagesCRUD.
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        _context.Attach(Customer).State = EntityState.Modified;
+
+        try
         {
-            if (!ModelState.IsValid)
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!CustomerExists(Customer.Id))
             {
-                return Page();
+                return NotFound();
             }
-
-            _context.Attach(Customer).State = EntityState.Modified;
-
-            try
+            else
             {
-                await _context.SaveChangesAsync();
+                throw;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CustomerExists(Customer.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
         }
 
-        private bool CustomerExists(int id)
-        {
-            return _context.Customers.Any(e => e.Id == id);
-        }
+        return RedirectToPage("./Index");
+    }
+
+    private bool CustomerExists(int id)
+    {
+        return _context.Customers.Any(e => e.Id == id);
     }
 }

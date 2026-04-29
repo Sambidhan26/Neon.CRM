@@ -7,7 +7,7 @@
 namespace Neon.CRM.Webapp.Migrations
 {
     /// <inheritdoc />
-    public partial class _AddedCustomersSeeded : Migration
+    public partial class _AddedCustomerSeeded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
