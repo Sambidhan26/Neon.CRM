@@ -28,7 +28,9 @@ public class DetailsModel : PageModel
             return NotFound();
         }
 
-        var customer = await _context.Customers.FirstOrDefaultAsync(m => m.Id == id);
+        var customer = await _context.Customers
+            .Include(u => u.Agent)
+            .FirstOrDefaultAsync(m => m.Id == id);
 
         if (customer is not null)
         {

@@ -13,7 +13,9 @@ namespace Neon.CRM.Webapp.Data.Models
 
         public Agent? Agent { get; set; }
         public string? AgentId { get; set; }
-        [NotMapped]
         public ICollection<Booking> Bookings { get; set; } = [];
+        [NotMapped]
+        public string FullName => $"{FirstName} {LastName}".Trim();
+
     }
 }
