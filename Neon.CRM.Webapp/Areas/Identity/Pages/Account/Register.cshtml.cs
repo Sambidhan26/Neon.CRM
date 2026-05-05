@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Neon.CRM.Webapp.Data.Models;
+using Neon.CRM.Webapp.Services.Request;
 
 namespace Neon.CRM.Webapp.Areas.Identity.Pages.Account
 {
@@ -30,13 +31,15 @@ namespace Neon.CRM.Webapp.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<Agent> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly INeonService _neonService;
 
         public RegisterModel(
             UserManager<Agent> userManager,
             IUserStore<Agent> userStore,
             SignInManager<Agent> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            INeonService neonService)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +47,7 @@ namespace Neon.CRM.Webapp.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _neonService = neonService;
         }
 
         /// <summary>
@@ -140,6 +144,11 @@ namespace Neon.CRM.Webapp.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                    var tenantName = userId;
+                    var branchResponse = await _neonService.CreateBranchAsync(tenantName);
+                    var connctionString = $"Host={branchResponse.branch};Database={branchResponse.databases[0].name};" +
+                        $"Username={branchResponse.databases[0].owner_name};Password={branchResponse.connection_uris};";
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

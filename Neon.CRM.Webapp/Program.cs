@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Neon.CRM.Webapp.Data;
 using Neon.CRM.Webapp.Data.Models;
 using Neon.CRM.Webapp.Services;
+using Neon.CRM.Webapp.Services.Request;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddDefaultIdentity<Agent>(options => options.SignIn.RequireConf
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddHttpClient<INeonService, NeonService>();
 
 var app = builder.Build();
 
