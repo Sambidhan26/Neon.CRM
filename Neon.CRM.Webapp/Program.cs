@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Neon.CRM.Webapp.Data;
 using Neon.CRM.Webapp.Data.Models;
+using Neon.CRM.Webapp.Providers;
 using Neon.CRM.Webapp.Services;
 using Neon.CRM.Webapp.Services.Request;
 
@@ -16,9 +17,13 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<Agent>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<Agent>, CustomUserClaimPrincipleFactory>();
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddHttpClient<INeonService, NeonService>();
+builder.Services.AddScoped<TenantDbContextFactory>();
+
+builder.Services.AddHttpContextAccessor(); 
 
 var app = builder.Build();
 

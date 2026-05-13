@@ -147,8 +147,10 @@ namespace Neon.CRM.Webapp.Areas.Identity.Pages.Account
 
                     var tenantName = userId;
                     var branchResponse = await _neonService.CreateBranchAsync(tenantName);
-                    var connctionString = $"Host={branchResponse.branch};Database={branchResponse.databases[0].name};" +
-                        $"Username={branchResponse.databases[0].owner_name};Password={branchResponse.connection_uris};";
+                    var connctionString = $"Host={branchResponse.connection_uris[0].connection_parameters.pooler_host}; Database=neondb; " +
+                        $"Username=neondb_owner; Password=npg_pq1k8WufoSRP; SSL Mode=VerifyFull; Channel Binding=Require;";
+
+                    await _userManager.UpdateAsync(user);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
